@@ -1,7 +1,7 @@
 import type { Conversion } from "./modelo/Conversion.ts";
 import "./App.css"
 
-function convertirTemperatura(valor: number, unidad: string): Conversion[] {
+function conversorTemperatura(valor: number, unidad: string): Conversion[] {
 
   if(unidad === "Celcius") {
     return [
@@ -32,7 +32,7 @@ function convertirTemperatura(valor: number, unidad: string): Conversion[] {
 
 function App() {
   const temperaturaInicial = 25;
-  const conversiones = convertirTemperatura(temperaturaInicial, "Celcius");
+  const conversiones = conversorTemperatura(temperaturaInicial, "Celcius");
   return (
     <div className="container">  
       <h2>Conversión de Temperatura</h2>
