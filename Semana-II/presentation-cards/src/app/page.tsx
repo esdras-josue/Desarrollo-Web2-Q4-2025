@@ -24,7 +24,7 @@ export default function Home() {
     {
       id: 4,
       fullName: "Kevin Lopez",
-      Occupation: "software engineer",
+      Occupation: "Football Player",
       Country: "Canada",
     },
     {
