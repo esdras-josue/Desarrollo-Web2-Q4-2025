@@ -6,51 +6,51 @@ export default function Preguntas() {
     const { puntaje, incrementarPuntos, reiniciarJuego} = useTriviaContext();
     const [preguntas, setPreguntas] = useState<Pregunta[]>([]);
     const [indice, setIndice] = useState<number>(0);
-    const [seleccion, setSeleccion] = useState<boolean>();
+    const [seleccion, setSeleccion] = useState<boolean | null>();
     const [mensaje, setMensaje] = useState("");
 
     useEffect(() => {
         const lista = [
             {
                 idPregunta: 1,
-                descripcionPregunta: "Messi es el jugador con mas balones de oro.",
+                descripcion: "Messi es el jugador con mas balones de oro.",
                 opcionRespuesta1: true,
                 opcionRespuesta2: false,
                 respuestaCorrecta: true,
-                puntajePregunta: 1,
+                puntos: 1,
             },
             {
                 idPregunta: 2,
-                descripcionPregunta : "Cristiano Ronaldo es el jugador con mas goles en la historia del futbol.",
+                descripcion : "Cristiano Ronaldo es el jugador con mas goles en la historia del futbol.",
                 opcionRespuesta1: true,
                 opcionRespuesta2: false,
                 respuestaCorrecta: true,
-                puntajePregunta: 1
+                puntos: 1
             },
             {
                 idPregunta: 3,
-                descripcionPregunta: "El Real Madrid es el club con mas UEFA CHAMPIONS LEAGUE.",
+                descripcion: "El Real Madrid es el club con mas UEFA CHAMPIONS LEAGUE.",
                 opcionRespuesta1: false,
                 opcionRespuesta2: true,
                 respuestaCorrecta: true,
-                puntajePregunta: 1
+                puntos: 1
 
             },
             {
                 idPregunta: 4,
-                descripcionPregunta: "Olimpia es el club mas galardonado en Honduras.",
+                descripcion: "Olimpia es el club mas galardonado en Honduras.",
                 opcionRespuesta1: true,
                 opcionRespuesta2: false,
                 respuestaCorrecta: true,
-                puntajePregunta: 1
+                puntos: 1
             },
             {
                 idPregunta: 5,
-                descripcionPregunta: "Honduras de ha clasificado a 5 mundiales de la FIFA.",
+                descripcion: "Honduras de ha clasificado a 5 mundiales de la FIFA.",
                 opcionRespuesta1: true,
                 opcionRespuesta2: false,
                 respuestaCorrecta: false,
-                puntajePregunta: 1
+                puntos: 1
 
             },
         ];
@@ -62,15 +62,55 @@ export default function Preguntas() {
         setSeleccion(opcion);
 
         if(opcion === actual.respuestaCorrecta){
-
+            incrementarPuntos();
+            setMensaje("Correcto");
+        } else{
+            setMensaje("Incorrecto");
         }
     }
 
+    function siguiente(){
+        setSeleccion(null);
+        setMensaje("");
+        if(indice < preguntas.length - 1){
+            setIndice(indice + 1) 
+        } else{
+            setMensaje("Hast terminado la trivia");
+        }
+    }
 
+    if( preguntas.length === 0) {
+        return <p>Cargando....</p>
+    }
+
+    const actual = preguntas[indice];
 
   return (
     <div>
-      
+      <p> Pregunta {indice + 1} de {preguntas.length}</p>
+      <p>{actual.descripcion}</p>
+
+      <button onClick={() => responder(true)} disabled={seleccion !== null}>
+        verdadero
+      </button>
+
+      <button onClick={() => responder(true)} disabled={seleccion !== null}>
+        false
+      </button>
+
+      {mensaje && (
+        <div>
+            <p>{mensaje}</p>
+            {indice < preguntas.length -1 && (
+                <button onClick={siguiente}>Siguiente</button>
+            )}
+            {indice === preguntas.length -1 && (
+                <button onClick={reiniciarJuego}>Reiniciar Trivia</button>
+            )}
+        </div>
+      )}
+
+      <p>Puntaje actual: {puntaje}</p>
     </div>
   )
 }

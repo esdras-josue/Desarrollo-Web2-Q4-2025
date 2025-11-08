@@ -3,6 +3,6 @@ export interface Pregunta {
     descripcion: string;
     opcionRespuesta1: boolean;
     opcionRespuesta2: boolean;
-    RespuestaCorrecta: boolean;
+    respuestaCorrecta: boolean;
     puntos: number;
 }
