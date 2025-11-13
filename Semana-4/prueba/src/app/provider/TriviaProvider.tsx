@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useContext } from "react";
 import { PlantillaReact } from '../modelos/PlantillaReact'
 import { TriviaContext } from '../contexto/TriviaContext';
