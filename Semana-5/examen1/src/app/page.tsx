@@ -1,12 +1,12 @@
-import { Component } from "react";
+"use client";
 import { GastoProvider } from "../app/context/GastoContext";
-import { AppProps } from "next/app";
+import Dashboard from "./pages/Dashboard";
 
 
-export default function Home({Component, pageProps } : AppProps) {
+export default function Home() {
   return (
     <GastoProvider>
-      <Component {...pageProps} />
+      <Dashboard />
     </GastoProvider>
   );
 }
