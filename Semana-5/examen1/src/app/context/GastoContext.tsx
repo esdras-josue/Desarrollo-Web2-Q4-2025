@@ -29,7 +29,7 @@ export const GastoProvider = ({ children }: {children: ReactNode}) => {
         setGastos(data);
     };
 
-    const agregarGasto = async () => {
+    const agregarGasto = async (gasto: Gasto) => {
         await agregarGasto(gasto);
         setGastos([...gastos, gasto]);
     }
