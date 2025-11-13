@@ -24,8 +24,9 @@ export default function Login() {
       ></input>
       <input
         placeholder="Password"
+        type="password"
         value={clave}
-        onChange={(e) => e.target.value}
+        onChange={(e) => setClave(e.target.value)}
       ></input>
       <button onClick={handleLogin}>Ingresar</button>
     </div>
